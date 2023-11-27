@@ -4,22 +4,14 @@ import string
 
 class NameTooShortError(Exception):
     pass
-    # print('Name is too short, need more than 3 symbols. Try again.')
-
 class NameTooLongError(Exception):
     pass
-    # print('Name is too long, need only 10 symbols. Try again.')
-    
-class PhoneError(Exception):
-    pass
-
 class Field:
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
         return str(self.value)
-
 
 class Name(Field):
     def __init__(self, name):
@@ -34,17 +26,9 @@ class Name(Field):
 class Phone(Field):
     def __init__(self, value):
         super().__init__(value)
-        # self.validation(value)
-    # def validation(self, value):
-    #     super().__init__(value)
-    #     # self.value = value
+
         if len(value) != 10 or not value.isdigit():
             raise ValueError
-        
-        # elif len(value) == 10 and value.isdigit():
-        #     return value
-        # else:
-        #     return PhoneError
                     
 class Record:
     def __init__(self, name):
@@ -67,12 +51,11 @@ class Record:
                 self.phones.remove(ph)
             
 
-
     
     def find_phone(self, search_phone):
         for phone in self.phones:
             if isinstance(phone, Field) and phone.value == search_phone:
-                return phone.value
+                return phone
         return None
     
     def __str__(self):
@@ -87,12 +70,9 @@ class Record:
                 return
         raise ValueError
 class AddressBook(UserDict):
-    # def __init__(self):
-    #     se
+    
     def add_record(self, record:Record):
         self.data[record.name.value] = record
-        # self.data.update(record)
-        # return self.data
     
     def find(self, search_name):
         for name, phone  in self.data.items():
@@ -105,9 +85,7 @@ class AddressBook(UserDict):
     def delete(self, name):
         if name in self.data:
             del self.data[name]
-            
-    # def delete(self, name):
-    #     return self.data.pop(name)
+
         
 
 if __name__ == "__main__":
@@ -139,6 +117,3 @@ if __name__ == "__main__":
     print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
 
     book.delete("Jane")
-
-
-
