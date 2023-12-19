@@ -84,36 +84,4 @@ class AddressBook(UserDict):
     
     def delete(self, name):
         if name in self.data:
-            del self.data[name]
-
-        
-
-if __name__ == "__main__":
-
-    book = AddressBook()
-
-    john_record = Record("John")
-    print(john_record)
-    john_record.add_phone("1234567890")
-    print(john_record)
-    john_record.add_phone("5555555555")
-    print(john_record)
-
-    book.add_record(john_record)
-
-    jane_record = Record("Jane")
-    jane_record.add_phone("9876543210")
-    book.add_record(jane_record)
-
-    for name, record in book.data.items():
-        print(record)
-
-    john = book.find("John")
-    john.edit_phone("1234567890", "1112223333")  #'tuple' object has no attribute 'edit_phone'
-
-    print(john)  
-
-    found_phone = john.find_phone("5555555555")
-    print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
-
-    book.delete("Jane")
+            del self.data[name]s
